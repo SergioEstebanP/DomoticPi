@@ -1,25 +1,35 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const mysql = require("mysql")
+const credentials = require("../global-config/credentals.json")
+const config = require('../global-config/services-config.json')
 
-app.listen(3000, () => {
-	 console.log("Device service running on port 3000");
+// configuration
+const DEVICE_SERVICE_PORT = config.ports.services_ports.device_service
+const MYSQL_PORT = config.ports.mysql
+const SERVER_RUNNING_MESSAGE = 'Device service running on PORT: '
+const MYSQL_PASSWORD = credentials.mysql
+
+app = express();
+
+app.listen(DEVICE_SERVICE_PORT, () => {
+	 console.log(SERVER_RUNNING_MESSAGE + DEVICE_SERVICE_PORT);
 });
 
-app.get("/dogs", (req, res, next) => {
-	 res.json(
-		[
-			{
-				"group_0": {
-					"name": "pipo",
-					"age": 4
-				}
-			},
-			{
-				"group_1": {
-					"name": "tobi",
-					"age": 5
-				}
-			}
-		]
-	 );
+// mysql data access
+const connection = mysql.createConnection({
+	host: 'localhost:' + MYSQL_PORT,
+	user: 'root',
+	password: MYSQL_PASSWORD,
+	user: 'deviceDB'
+})
+
+connection.connect()
+
+// GET /devices
+app.get("/devices", (req, res, next) => {
+	devices = connection.query('SELECT * from device', function(error, results, fields) {
+		if (error) throw error
+		console.log(devices)
+	})
+	connection.end()
 });

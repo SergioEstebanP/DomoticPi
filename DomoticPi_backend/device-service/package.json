@@ -1,15 +1,16 @@
 {
-    "name": "dummyServer",
+    "name": "device-service",
     "version": "1.0.0",
-    "description": "Simple server which and endpoint to get informatino about pets",
-    "main": "dummyServer.js",
+    "description": "Simple service to add, remove and get domotic devices in a given environment",
+    "main": "device-service.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+      "test": "echo \"Error: no script specified\" && exit 1"
     },
     "author": "Sergio Esteban",
     "license": "ISC",
     "dependencies": {
-      "express": "4.17.1"
+      "express": "4.17.1",
+      "mysql": "^2.17.1"
     }
   }
   

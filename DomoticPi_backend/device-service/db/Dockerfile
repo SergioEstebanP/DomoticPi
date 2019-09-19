@@ -1,16 +1,13 @@
 FROM mysql:latest
 
-RUN apk update
-RUN apk upgrade
-RUN apk add git mysql
-
 ARG git_repository=https://github.com/SergioEstebanP/DomoticPi.git
-   
-RUN git clone ${git_repository}
-WORKDIR ./DomoticPi/DomoticPi_backend/device-service/db
+ARG schema_path=./DomoticPi/DomoticPi_backend/device-service/db/schema.sql 
 
-# init database with own container command
-RUN cp /docker-entrypoint-initdb.d .
-RUN docker-entrypoint-initdb.d
+RUN apt -y update && \
+    apt -y upgrade && \
+    apt -y install git && \
+    git clone ${git_repository} && \
+    cp ${schema_path} ./docker-entrypoint-initdb.d && \ 
+    bash -f entrypoint.sh
 
 EXPOSE 3306
