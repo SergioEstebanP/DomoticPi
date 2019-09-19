@@ -1,6 +1,6 @@
 const express = require("express");
 const mysql = require("mysql")
-const credentials = require("../global-config/credentals.json")
+const credentials = require("../global-config/credentials.json")
 const config = require('../global-config/services-config.json')
 
 // configuration
