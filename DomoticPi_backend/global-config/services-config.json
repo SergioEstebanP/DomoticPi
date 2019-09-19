@@ -1,0 +1,10 @@
+{
+    "ports": {
+        "services_ports": {
+            "device_service": 3000,
+            "house_service": 3001,
+            "room_service": 3002
+        },
+        "mysql_port": 3306
+    }
+}
