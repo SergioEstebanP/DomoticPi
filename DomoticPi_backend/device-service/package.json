@@ -1,0 +1,15 @@
+{
+    "name": "dummyServer",
+    "version": "1.0.0",
+    "description": "Simple server which and endpoint to get informatino about pets",
+    "main": "dummyServer.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Sergio Esteban",
+    "license": "ISC",
+    "dependencies": {
+      "express": "4.17.1"
+    }
+  }
+  
