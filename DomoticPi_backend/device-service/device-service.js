@@ -25,16 +25,24 @@ const connection = mysql.createConnection({
 	insecureAuth: true
 })
 
+app.set('json spaces', 2)
 
 // GET /devices
 app.get("/devices", (req, res, next) => {
 	connection.connect()
 	connection.query('SELECT * from device', function(error, results, fields) {
 		if (error) throw error
-		console.log(results)
+		response = {}
+		results.forEach(row => {
+			response[`${row.id}`] = {
+				'sensor_name': `${row.name}`,
+				'sensor_house': `${row.house}`,
+				'sensor_room': `${row.room}`,
+				'sensor_type': `${row.type}`,
+			}
+		});
+		res.json(response)
+		res.end()
 	})
-	res.json({
-		"message": 200
-	});
 	connection.end()
 });
