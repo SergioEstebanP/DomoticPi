@@ -25,10 +25,10 @@ const connection = mysql.createConnection({
 	insecureAuth: true
 })
 
-connection.connect()
 
 // GET /devices
 app.get("/devices", (req, res, next) => {
+	connection.connect()
 	connection.query('SELECT * from device', function(error, results, fields) {
 		if (error) throw error
 		console.log(results)
