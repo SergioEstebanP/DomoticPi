@@ -15,6 +15,8 @@ app.listen(DEVICE_SERVICE_PORT, () => {
 	 console.log(SERVER_RUNNING_MESSAGE + DEVICE_SERVICE_PORT);
 });
 
+app.set('json spaces', 2)
+
 // mysql data access
 const connection = mysql.createConnection({
 	host: 'localhost',
@@ -24,8 +26,6 @@ const connection = mysql.createConnection({
 	port: MYSQL_PORT,
 	insecureAuth: true
 })
-
-app.set('json spaces', 2)
 
 // GET /devices
 app.get("/devices", (req, res, next) => {
