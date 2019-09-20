@@ -5,6 +5,6 @@
             "house_service": 3001,
             "room_service": 3002
         },
-        "mysql_port": 3306
+        "mysql": 3306
     }
 }

@@ -1,16 +1,15 @@
 {
-    "name": "device-service",
-    "version": "1.0.0",
-    "description": "Simple service to add, remove and get domotic devices in a given environment",
-    "main": "device-service.js",
-    "scripts": {
-      "test": "echo \"Error: no script specified\" && exit 1"
-    },
-    "author": "Sergio Esteban",
-    "license": "ISC",
-    "dependencies": {
-      "express": "4.17.1",
-      "mysql": "^2.17.1"
-    }
+  "name": "device-service",
+  "version": "1.0.0",
+  "description": "Simple service to add, remove and get domotic devices in a given environment",
+  "main": "device-service.js",
+  "scripts": {
+    "test": "echo \"Error: no script specified\" && exit 1"
+  },
+  "author": "Sergio Esteban",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.17.1",
+    "mysql": "^2.17.1"
   }
-  
+}

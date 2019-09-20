@@ -17,19 +17,24 @@ app.listen(DEVICE_SERVICE_PORT, () => {
 
 // mysql data access
 const connection = mysql.createConnection({
-	host: 'localhost:' + MYSQL_PORT,
-	user: 'root',
-	password: MYSQL_PASSWORD,
-	user: 'deviceDB'
+	host: 'localhost',
+	user: 'device-service',
+	password: 'device-service',
+	database: 'devicesDB',
+	port: MYSQL_PORT,
+	insecureAuth: true
 })
 
 connection.connect()
 
 // GET /devices
 app.get("/devices", (req, res, next) => {
-	devices = connection.query('SELECT * from device', function(error, results, fields) {
+	connection.query('SELECT * from device', function(error, results, fields) {
 		if (error) throw error
-		console.log(devices)
+		console.log(results)
 	})
+	res.json({
+		"message": 200
+	});
 	connection.end()
 });
