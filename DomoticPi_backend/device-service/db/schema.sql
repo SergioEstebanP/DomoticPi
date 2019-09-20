@@ -9,9 +9,9 @@ CREATE TABLE device (
     type VARCHAR(255)
 );
 
-INSERT INTO TABLE (device) values ("General lights", "Valladolid", "Room 1", "LIGHT");
-INSERT INTO TABLE (device) values ("Motion sensor", "Valladolid", "Hall", "SENSOR");
+INSERT INTO device values ("General lights", "Valladolid", "Room 1", "LIGHT");
+INSERT INTO device values ("Motion sensor", "Valladolid", "Hall", "SENSOR");
 
-CREATE USER 'deviceservice'@'localhost' IDENTIFIED WITH mysql_native_password BY 'deviceservice';
-GRANT ALL PRIVILEGES ON *.* TO 'deviceservice'@'localhost';
+CREATE USER 'device-service'@'localhost' IDENTIFIED WITH mysql_native_password BY 'device-service';
+GRANT ALL PRIVILEGES ON *.* TO 'device-service'@'localhost';
 FLUSH PRIVILEGES;
