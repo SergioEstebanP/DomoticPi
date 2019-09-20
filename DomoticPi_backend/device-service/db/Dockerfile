@@ -9,5 +9,3 @@ RUN apt -y update && \
     git clone ${git_repository} && \
     cp ${schema_path} ./docker-entrypoint-initdb.d && \ 
     bash -f entrypoint.sh
-
-EXPOSE 3306

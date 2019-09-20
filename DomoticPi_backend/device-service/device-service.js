@@ -17,7 +17,7 @@ app.listen(DEVICE_SERVICE_PORT, () => {
 
 // mysql data access
 const connection = mysql.createConnection({
-	host: 'localhost',
+	host: '127.0.0.1',
 	user: 'device-service',
 	password: 'device-service',
 	database: 'devicesDB',
