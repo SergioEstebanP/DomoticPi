@@ -13,6 +13,6 @@ CREATE TABLE device (
 INSERT INTO device (name, house, room, type) values ("General lights", "Valladolid", "Room 1", "LIGHT");
 INSERT INTO device (name, house, room, type) values ("Motion sensor", "Valladolid", "Hall", "SENSOR");
 
-CREATE USER 'device-service'@'localhost' IDENTIFIED WITH mysql_native_password BY 'device-service';
-GRANT ALL PRIVILEGES ON *.* TO 'device-service'@'localhost';
+CREATE USER 'device-service'@'%' IDENTIFIED WITH mysql_native_password BY 'device-service';
+GRANT ALL PRIVILEGES ON *.* TO 'device-service'@'%';
 FLUSH PRIVILEGES;
