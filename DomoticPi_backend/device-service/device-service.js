@@ -19,7 +19,7 @@ app.set('json spaces', 2)
 
 // mysql data access
 const connection = mysql.createConnection({
-	host: '255.255.255.255',
+	host: '172.17.0.2',
 	user: 'device-service',
 	password: 'device-service',
 	database: 'devicesDB',
