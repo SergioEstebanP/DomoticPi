@@ -1,0 +1,10 @@
+version: "q.0"
+services:
+  device-service-db:
+      build: ./db/.
+      container_name: device-service-db
+      ports: 33060:3306
+  device-service:
+    build: .
+    container_name: device-service
+    ports: 3000:3000
