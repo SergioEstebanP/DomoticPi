@@ -11,5 +11,3 @@ WORKDIR DomoticPi/DomoticPi_backend/device-service
 
 RUN npm install express
 RUN npm install mysql
-
-ENTRYPOINT node device-service.js
