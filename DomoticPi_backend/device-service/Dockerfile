@@ -1,19 +1,15 @@
 FROM ubuntu:latest
 
 RUN apt update
-RUN apt install -y git python3 python3-venv
+RUN apt install -y git python3 python3-pip
 
 ARG git_repository=https://github.com/SergioEstebanP/DomoticPi.git
    
 RUN git clone ${git_repository}
 WORKDIR DomoticPi/DomoticPi_backend/device-service
 
-RUN python3 -m venv venv 
-RUN source venv/bin/activate
-RUN pip install mysql-connector-python flask
-RUN export FLASK_ENV=development
-RUN export FLASK_APP=device-service.py
-RUN export LC_ALL=C.UTF-8
-RUN export LANG=C.UTF-8
+RUN pip3 install mysql-connector-python flask
 
-ENTRYPOINT flask run
+ENTRYPOINT export FLASK_ENV=development && export FLASK_APP=device-service.py && export LC_ALL=C.UTF-8 && export LANG=C.UTF-8 && flask run
+
+EXPOSE 5000

@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 @app.route('/devices')
 def index():
+    print("hola")
     try:
         connection = mysql.connector.connect(
                 host='172.17.0.2',
