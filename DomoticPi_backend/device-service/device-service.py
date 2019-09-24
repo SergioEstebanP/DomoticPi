@@ -4,10 +4,13 @@ from mysql.connector import Error
 
 app = Flask(__name__)
 
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
+
 @app.route('/devices')
 def index():
-    print("hola")
-    try:
+    return "hola"
+    """try:
         connection = mysql.connector.connect(
                 host='172.17.0.2',
                 database='devicesDB',
@@ -27,3 +30,4 @@ def index():
         if (connection.is_connected()):
             connection.close()
             print("Mysql Connection CLosed")
+            """

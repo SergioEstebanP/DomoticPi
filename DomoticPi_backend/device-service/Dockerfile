@@ -10,6 +10,6 @@ WORKDIR DomoticPi/DomoticPi_backend/device-service
 
 RUN pip3 install mysql-connector-python flask
 
-ENTRYPOINT export FLASK_ENV=development && export FLASK_APP=device-service.py && export LC_ALL=C.UTF-8 && export LANG=C.UTF-8 && flask run
+ENTRYPOINT python device-service.py
 
 EXPOSE 5000
