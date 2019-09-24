@@ -1,16 +1,12 @@
 import mysql.connector
-from flask import Flask
+from flask import Flask, jsonify
 from mysql.connector import Error
 
 app = Flask(__name__)
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
-
 @app.route('/devices')
 def index():
-    return "hola"
-    """try:
+    try:
         connection = mysql.connector.connect(
                 host='172.17.0.2',
                 database='devicesDB',
@@ -22,7 +18,8 @@ def index():
             cursor = connection.cursor()
             cursor.execute(sql_query)
             result = cursor.fetchall()
-            return result
+            print(result)
+            return jsonify(result)
 
     except Error as e:
         print(e)
@@ -30,4 +27,6 @@ def index():
         if (connection.is_connected()):
             connection.close()
             print("Mysql Connection CLosed")
-            """
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')

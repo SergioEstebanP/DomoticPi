@@ -5,5 +5,5 @@ docker build -t device-service .
 
 To tune the containter:
 ```
-docker run -p 5000:5000 --name device-service device-service
+docker run -p -d 5000:5000 --name device-service device-service
 ```
