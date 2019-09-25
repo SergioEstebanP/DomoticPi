@@ -25,7 +25,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/dogs')
+    @app.route('/devices')
     def dogs():
         names = utils.get_dog_names()
         return render_template('main_view.html', names=names)
