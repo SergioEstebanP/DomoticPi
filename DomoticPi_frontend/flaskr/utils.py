@@ -1,11 +1,9 @@
 import json
 import requests
 
-def get_dog_names():
+def get_devices():
     names = []
-    response = requests.get("http://localhost:3000/dogs")
+    response = requests.get("http://localhost:5000/devices")
     jsonBody = json.loads(response.content)
-    for group in jsonBody:
-        for key in group:
-            names.append(group[key]['name'])
-    return names
+    print(jsonBody)
+    return jsonBody
