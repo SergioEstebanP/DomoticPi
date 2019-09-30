@@ -8,7 +8,7 @@ app = Flask(__name__)
 def index():
     try:
         connection = mysql.connector.connect(
-                host='device-service-db'
+                host='device-service-db',
                 database='devicesDB',
                 user='device-service',
                 password='device-service')
