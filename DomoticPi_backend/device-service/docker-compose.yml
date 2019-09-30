@@ -1,10 +1,23 @@
-version: "q.0"
+version: '2'
 services:
   device-service-db:
-      build: ./db/.
-      container_name: device-service-db
-      ports: 33060:3306
+    build: ./db
+    container_name: device-service-db
+    ports: 
+      - 3306:3306
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: device-service
+
   device-service:
     build: .
     container_name: device-service
-    ports: 3000:3000
+    ports: 
+      - 5000:5000
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
