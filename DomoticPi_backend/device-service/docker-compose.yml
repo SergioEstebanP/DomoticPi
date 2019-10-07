@@ -1,4 +1,5 @@
 version: '2'
+
 services:
   device-service-db:
     build: ./db
