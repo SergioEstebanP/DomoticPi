@@ -18,7 +18,6 @@ def index():
             cursor = connection.cursor()
             cursor.execute(sql_query)
             result = cursor.fetchall()
-            print(result)
             return jsonify(result)
 
     except Error as e:
