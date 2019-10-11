@@ -39,6 +39,25 @@ services:
     networks:
       - backend
 
+# USER  SERVICE
+  user-service-db:
+    build: ./user-service/db
+    container_name: user-service-db
+    ports: 
+      - 3306:3306
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: user-service
+
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    ports: 
+      - 5000:5000
+    networks:
+      - backend
+
 networks:
   backend:
     driver: bridge

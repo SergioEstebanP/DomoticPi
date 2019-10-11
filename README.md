@@ -17,3 +17,23 @@ Some useful commands to deploy the services:
 - Add requirement file for pip 
 - Select a better frontend framework
 - See if MySQL connector for node is updated and support MySQL 8.0 version
+
+---
+
+## Useful information
+ 
+Por forwarding for **services**:
+
+| Service          | Port outside container  |  Port Forwarded |
+| ---------------- |:-----------------------:|:---------------:|
+| device-service   | 6001                    | 5000            |
+| house-service    | 6002                    | 5000            |
+| user-service     | 6003                    | 5000            |
+
+Port forwarding for services **databases**:
+
+| Service            | Port outside container  |  Port Forwarded |
+| ------------------ |:-----------------------:|:---------------:|
+| device-service-db  | 7001                    | 3306            |
+| house-service-db   | 7002                    | 3306            |
+| user-service-db    | 7003                    | 3306            |

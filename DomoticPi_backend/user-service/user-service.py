@@ -4,23 +4,23 @@ from mysql.connector import Error
 
 app = Flask(__name__)
 
-@app.route('/devices', methods=['GET', 'POST'])
+@app.route('/users', methods=['GET', 'POST'])
 def index():
     try:
         connection = mysql.connector.connect(
-                host='device-service-db',
-                database='devicesDB',
-                user='device-service',
-                password='device-service')
+                host='user-service-db',
+                database='userDB',
+                user='user-service',
+                password='user-service')
         if connection.is_connected():
             if (flask.request.method == 'GET'):
-                sql_query = "select * from device"
+                sql_query = "select * from user"
                 cursor = connection.cursor()
                 cursor.execute(sql_query)
                 result = cursor.fetchall()
                 return jsonify(result)
             elif (flask.request.method == 'POST'):
-                sql_query = "select * from device"
+                sql_query = "select * from user"
             else:
                 abort(405, "Method not allowed not allowed")
 
