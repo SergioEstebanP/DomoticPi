@@ -11,7 +11,7 @@ def index():
                 host='house-service-db',
                 database='housesDB',
                 user='house-service',
-                password='device-service')
+                password='house-service')
         if connection.is_connected():
             if (request.method == 'GET'):
                 sql_query = "select * from house"

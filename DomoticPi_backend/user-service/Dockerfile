@@ -6,8 +6,8 @@ RUN apt update && \
 ARG git_repository=https://github.com/SergioEstebanP/DomoticPi.git
 RUN git clone ${git_repository} 
 
-WORKDIR ./DomoticPi/DomoticPi_backend/device-service
+WORKDIR ./DomoticPi/DomoticPi_backend/user-service
 
 RUN pip3 install mysql-connector-python flask
 
-ENTRYPOINT python3 device-service.py
+ENTRYPOINT python3 user-service.py
