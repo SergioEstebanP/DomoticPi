@@ -4,32 +4,37 @@ from mysql.connector import Error
 
 app = Flask(__name__)
 
-@app.route('/users', methods=['GET', 'POST'])
-def index():
+def get_users():
     try:
         connection = mysql.connector.connect(
-                host='user-service-db',
-                database='userDB',
-                user='user-service',
-                password='user-service')
+            host='user-service-db', 
+            database='usersDB', 
+            user='user-service', 
+            password='user-service'
+        )
+        print("connected to DB")
         if connection.is_connected():
-            if (request.method == 'GET'):
-                sql_query = "select * from user"
-                cursor = connection.cursor()
-                cursor.execute(sql_query)
-                result = cursor.fetchall()
-                return jsonify(result)
-            elif (request.method == 'POST'):
-                sql_query = "select * from user"
-            else:
-                abort(405, "Method not allowed not allowed")
-
-    except Error as e:
-        print(e)
-    finally:
-        if (connection.is_connected()):
+            sql_query = "select * from user"
+            cursor = connection.cursor()
+            cursor.execute(sql_query)
+            result = cursor.fetchall()
             connection.close()
-            print("Mysql Connection CLosed")
+            print(result)
+            return result
+    except Error as error:
+        print(error)
+
+@app.route('/users', methods=['GET', 'POST'])
+def index():
+    if (request.method == 'GET'):
+        print("enter in GET users")
+        query_result = get_users()
+        print("after execute sql query")
+        return jsonify(query_result)
+    elif (request.method == 'POST'):
+        return ("201 Created")
+    else:
+        abort(405, "Method not allowed not allowed")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

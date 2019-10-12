@@ -1,5 +1,5 @@
-CREATE DATABASE userDB;
-USE userDB;
+CREATE DATABASE usersDB;
+USE usersDB;
 
 CREATE TABLE user_type (
     id INT NOT NULL,

@@ -1,22 +1,22 @@
 version: '2'
 
 services:
-  # HOUSE SERVICE
+  # USER SERVICE
   house-service-db:
-    build: ./house-service/db
-    container_name: house-service-db
+    build: ./user-service/db
+    container_name: user-service-db
     ports: 
-      - 7002:3306
+      - 7003:3306
     networks:
       - backend
     environment:
-      MYSQL_ROOT_PASSWORD: house-service
+      MYSQL_ROOT_PASSWORD: user-service
 
-  house-service:
-    build: ./house-service
-    container_name: house-service
+  user-service:
+    build: ./user-service
+    container_name: user-service
     ports: 
-      - 6002:5000
+      - 6003:5000
     networks:
       - backend
 
