@@ -4,32 +4,33 @@ from mysql.connector import Error
 
 app = Flask(__name__)
 
-@app.route('/devices', methods=['GET', 'POST'])
-def index():
+def get_devices():
     try:
         connection = mysql.connector.connect(
-                host='device-service-db',
-                database='devicesDB',
-                user='device-service',
-                password='device-service')
+            host='device-service-db', 
+            database='devicesDB', 
+            user='device-service', 
+            password='device-service'
+        )
         if connection.is_connected():
-            if (request.method == 'GET'):
-                sql_query = "select * from device"
-                cursor = connection.cursor()
-                cursor.execute(sql_query)
-                result = cursor.fetchall()
-                return jsonify(result)
-            elif (request.method == 'POST'):
-                sql_query = "select * from device"
-            else:
-                abort(405, "Method not allowed not allowed")
-
-    except Error as e:
-        print(e)
-    finally:
-        if (connection.is_connected()):
+            sql_query = "select * from device"
+            cursor = connection.cursor()
+            cursor.execute(sql_query)
+            result = cursor.fetchall()
             connection.close()
-            print("Mysql Connection CLosed")
+            return result
+    except Error as error:
+        print(error)
+
+@app.route('/devices', methods=['GET', 'POST'])
+def index():
+    if (request.method == 'GET'):
+        query_result = get_devices()
+        return jsonify(query_result)
+    elif (request.method == 'POST'):
+        return ("201 Created")
+    else:
+        abort(405, "Method not allowed not allowed")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

@@ -20,44 +20,6 @@ services:
     networks:
       - backend
 
-# HOUSE  SERVICE
-  house-service-db:
-    build: ./house-service/db
-    container_name: house-service-db
-    ports: 
-      - 7002:3306
-    networks:
-      - backend
-    environment:
-      MYSQL_ROOT_PASSWORD: house-service
-
-  house-service:
-    build: ./house-service
-    container_name: house-service
-    ports: 
-      - 6002:5000
-    networks:
-      - backend
-
-# USER  SERVICE
-  user-service-db:
-    build: ./user-service/db
-    container_name: user-service-db
-    ports: 
-      - 7003:3306
-    networks:
-      - backend
-    environment:
-      MYSQL_ROOT_PASSWORD: user-service
-
-  user-service:
-    build: ./user-service
-    container_name: user-service
-    ports: 
-      - 6003:5000
-    networks:
-      - backend
-
 networks:
   backend:
     driver: bridge
