@@ -1,5 +1,5 @@
 import mysql.connector
-from flask import Flask, jsonify, abort
+from flask import Flask, jsonify, abort, request
 from mysql.connector import Error
 
 app = Flask(__name__)
@@ -13,13 +13,13 @@ def index():
                 user='device-service',
                 password='device-service')
         if connection.is_connected():
-            if (flask.request.method == 'GET'):
+            if (request.method == 'GET'):
                 sql_query = "select * from device"
                 cursor = connection.cursor()
                 cursor.execute(sql_query)
                 result = cursor.fetchall()
                 return jsonify(result)
-            elif (flask.request.method == 'POST'):
+            elif (request.method == 'POST'):
                 sql_query = "select * from device"
             else:
                 abort(405, "Method not allowed not allowed")
