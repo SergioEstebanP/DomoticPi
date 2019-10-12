@@ -1,22 +1,22 @@
 version: '2'
 
 services:
-  # DEVICE SERVICE
-  device-service-db:
-    build: ./device-service/db
-    container_name: device-service-db
+  # HOUSE SERVICE
+  house-service-db:
+    build: ./house-service/db
+    container_name: house-service-db
     ports: 
-      - 7001:3306
+      - 7002:3306
     networks:
       - backend
     environment:
-      MYSQL_ROOT_PASSWORD: device-service
+      MYSQL_ROOT_PASSWORD: house-service
 
-  device-service:
-    build: ./device-service
-    container_name: device-service
+  house-service:
+    build: ./house-service
+    container_name: house-service
     ports: 
-      - 6001:5000
+      - 6002:5000
     networks:
       - backend
 

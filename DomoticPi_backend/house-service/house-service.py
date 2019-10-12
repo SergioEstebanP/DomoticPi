@@ -4,33 +4,33 @@ from mysql.connector import Error
 
 app = Flask(__name__)
 
-@app.route('/houses', methods=['GET', 'POST'])
-def index():
+def get_houses():
     try:
         connection = mysql.connector.connect(
-                host='house-service-db',
-                database='housesDB',
-                user='house-service',
-                password='house-service')
+            host='house-service-db', 
+            database='housesDB', 
+            user='house-service', 
+            password='house-service'
+        )
         if connection.is_connected():
-            if (request.method == 'GET'):
-                sql_query = "select * from house"
-                cursor = connection.cursor()
-                cursor.execute(sql_query)
-                result = cursor.fetchall()
-                return jsonify(result)
-            elif (request.method == 'POST'):
-                sql_query = "select * from house"
-                return "operation success"
-            else:
-                abort(405, "Method not allowed not allowed")
-
-    except Error as e:
-        print(e)
-    finally:
-        if (connection.is_connected()):
+            sql_query = "select * from house"
+            cursor = connection.cursor()
+            cursor.execute(sql_query)
+            result = cursor.fetchall()
             connection.close()
-            print("Mysql Connection CLosed")
+            return result
+    except Error as error:
+        print(error)
+
+@app.route('/houses', methods=['GET', 'POST'])
+def index():
+    if (request.method == 'GET'):
+        query_result = get_houses()
+        return jsonify(query_result)
+    elif (request.method == 'POST'):
+        return ("201 Created")
+    else:
+        abort(405, "Method not allowed not allowed")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

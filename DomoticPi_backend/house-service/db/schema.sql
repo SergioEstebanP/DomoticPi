@@ -5,7 +5,7 @@ CREATE TABLE house (
     id INT NOT NULL AUTO_INCREMENT,
     city VARCHAR(255) NOT NULL,
     address VARCHAR(255),
-    owner INTEGER,
+    owner VARCHAR(50),
     CONSTRAINT house_pk PRIMARY KEY (id)
 );
 
