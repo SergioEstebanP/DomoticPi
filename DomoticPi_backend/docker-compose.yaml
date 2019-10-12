@@ -6,7 +6,7 @@ services:
     build: ./device-service/db
     container_name: device-service-db
     ports: 
-      - 3306:7001
+      - 7001:3306
     networks:
       - backend
     environment:
@@ -16,7 +16,7 @@ services:
     build: ./device-service
     container_name: device-service
     ports: 
-      - 5000:6001
+      - 6001:5000
     networks:
       - backend
 

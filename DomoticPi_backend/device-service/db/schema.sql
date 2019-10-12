@@ -10,7 +10,7 @@ CREATE TABLE device_type (
 CREATE TABLE device (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
-    type VARCHAR(50) NOT NULL,
+    type INT NOT NULL,
     model VARCHAR(255),
     CONSTRAINT device_pk PRIMARY KEY (id),
     CONSTRAINT device_type_fk FOREIGN KEY (type) REFERENCES device_type(id)
