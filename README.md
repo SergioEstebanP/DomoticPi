@@ -2,6 +2,7 @@
 
 Some useful commands to deploy the services:
 - **Build Dockerfile**: `docker build -t device-service .`
+- **Create docker local network**: `docker create network -d bridge network_name`
 - **Run Service container**: `docker run -p -d 5000:5000 --name device-service --net=devices-nw device-service`
 - **Run MySQL container**: `docker run -p 3306:3306 --name device-service-db -e MYSQL_ROOT_PASSWORD=device-service -d --net=services-nw device-service-db`
 - **Start Services**: `docker-compose up`

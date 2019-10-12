@@ -13,8 +13,9 @@ CREATE TABLE user (
     surname_1 VARCHAR(50),
     surname_2 VARCHAR(50),
     nick VARCHAR(25),
-    type INTEGER,
-    CONSTRAINT user_pk PRIMARY KEY (id)
+    type INT,
+    CONSTRAINT user_pk PRIMARY KEY (id),
+    CONSTRAINT user_type_fk FOREIGN KEY (type) REFERENCES user_type(id)
 );
 
 INSERT INTO user_type (id, user_value) values (0, "client");
