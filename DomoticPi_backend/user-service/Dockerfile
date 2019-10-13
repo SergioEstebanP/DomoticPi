@@ -1,8 +1,8 @@
-FROM ubuntu-services
+FROM ubuntu-services-full
 
-ARG git_repository=https://github.com/SergioEstebanP/DomoticPi.git
-RUN git clone ${git_repository} 
+WORKDIR ./DomoticPi
+RUN git pull
 
-WORKDIR ./DomoticPi/DomoticPi_backend/user-service
+WORKDIR ./DomoticPi_backend/user-service
 
 ENTRYPOINT python3 user-service.py

@@ -2,7 +2,7 @@ version: '2'
 
 services:
   # USER SERVICE
-  house-service-db:
+  user-service-db:
     build: ./user-service/db
     container_name: user-service-db
     ports: 
