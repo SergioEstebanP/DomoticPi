@@ -1,10 +1,3 @@
-FROM ubuntu-updated
-
-ARG git_repository=https://github.com/SergioEstebanP/DomoticPi.git
-RUN git clone ${git_repository} 
-
+FROM ubuntu-services-full
 WORKDIR ./DomoticPi/DomoticPi_backend/device-service
-
-RUN pip3 install mysql-connector-python flask
-
-ENTRYPOINT python3 device-service.py
+ENTRYPOINT git -C /DomoticPi pull && python3 device-service.py
