@@ -66,13 +66,13 @@ Some useful commands to deploy the services:
 | user-service-db    | 7003                    | 3306            |
 
 #### Services Architecture
-(In progress)
+![alt Services_architecture](documentation/services_components.png)
 
 #### Infrastructure Architecture
-(In progress)
+![alt Infrastructure_diagram](documentation/components_diagram.png)
 
 #### Entity Relation Diagram
-(In progress)
+![alt er_diagram](documentation/er_diagram.png)
 
 ### To do list: 
 ---
