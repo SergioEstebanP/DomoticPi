@@ -25,7 +25,6 @@ def get_devices():
 @app.route('/devices', methods=['GET', 'POST'])
 def index():
     if (request.method == 'GET'):
-        print("hola")
         query_result = get_devices()
         return jsonify(query_result)
     elif (request.method == 'POST'):
