@@ -67,11 +67,10 @@
                 </div>
                 {% endfor %}
             </div>
-            {% endfor %}
             <!-- END SENSORS LIST -->
 
             <div class="row">
-                {% for i in range((data_devices|length)%2) %}
+                {% for j in range((data_devices|length)%2) %}
                 <div class="col">
                     <div class="card" style="margin: 1em">
                         <div class="card-body">
@@ -85,6 +84,7 @@
                 </div>
                 {% endfor %}
             </div>
+            {% endfor %}
 
 
             <!-- BUTTON TO ADD SENSORS -->
