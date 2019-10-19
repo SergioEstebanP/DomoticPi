@@ -1,23 +1,21 @@
-from flask import Flask, render_template, request, json
+from flask import Flask, render_template
 
+import requests
+import json
 import os
 
 app = Flask(__name__)
 
-devices_url = 'http://localhost:6001/devices'
-houses_url = 'http://localhost:6002/houses'
-users_url = 'http://localhost:6003/users'
-
 def get_devices():
-    response = request.get(devices_url)
+    response = requests.get('http://device-service:5000/devices')
     return json.loads(response.content)
 
 def get_houses():
-    response = request.get(houses_url)
+    response = requests.get('http://house-service:5000/houses')
     return json.loads(response.content)
 
 def get_users():
-    response = request.get(users_url)
+    response = requests.get('http://user-service:5000/users')
     return json.loads(response.content)
 
 @app.route('/devices')

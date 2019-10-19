@@ -44,7 +44,11 @@ Some useful commands to deploy the services:
 - **Run MySQL container**: `docker run -p 3306:3306 --name device-service-db -e MYSQL_ROOT_PASSWORD=device-service -d --net=services-nw device-service-db`
 - **Start Services**: `docker-compose up`
 - **Stop Services**: `docker-compose down`
+- **Start services container**: `docker run -it sergioestebanp/domoticpi:services-1.0`
 - **Enter in running container**: `docker exec -it container_name bash`
+- **Install python packages in containers**: `pip3 install packageName`
+- **Create container image from existing**: `docker commit sha256 sergioestebanp/domoticpi:tagName`
+- **Upload image container to docker-hub**: `docker push sha256 sergioestebanp/domoticpi:tagNameContainer`
 
 ### Useful information
 ---
