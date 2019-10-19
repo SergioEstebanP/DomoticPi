@@ -1,4 +1,4 @@
-FROM mysql-services-full
+FROM sergioestebanp/domoticpi:db-services-1.0
 ARG schema_path=./DomoticPi/DomoticPi_backend/user-service/db/schema.sql 
 WORKDIR ./DomoticPi
 RUN git pull
