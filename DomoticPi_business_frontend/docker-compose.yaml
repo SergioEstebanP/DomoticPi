@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+# SERVICES FRONTEND
+  services-frontend:
+    build: .
+    container_name: services-frontend
+    ports: 
+      - 3001:3001
+    networks:
+      - services-frontend
+
+networks:
+  services-frontend:
+    driver: bridge
