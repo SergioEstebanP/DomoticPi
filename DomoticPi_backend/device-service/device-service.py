@@ -7,10 +7,10 @@ app = Flask(__name__)
 def get_devices():
     try:
         connection = mysql.connector.connect(
-            host='device-service-db', 
-            database='devicesDB', 
-            user='device-service', 
-            password='device-service'
+            host='database-service', 
+            database='DatabaseService', 
+            user='database-service', 
+            password='database-service'
         )
         if connection.is_connected():
             sql_query = "select * from device"

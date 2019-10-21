@@ -2,16 +2,6 @@ version: '2'
 
 services:
 # DEVICE SERVICE
-  device-service-db:
-    build: ./device-service/db
-    container_name: device-service-db
-    ports: 
-      - 7001:3306
-    networks:
-      - backend
-    environment:
-      MYSQL_ROOT_PASSWORD: device-service
-
   device-service:
     build: ./device-service
     container_name: device-service
@@ -22,16 +12,6 @@ services:
       - frontend-services
 
 # HOUSE SERVICE
-  house-service-db:
-    build: ./house-service/db
-    container_name: house-service-db
-    ports: 
-      - 7002:3306
-    networks:
-      - backend
-    environment:
-      MYSQL_ROOT_PASSWORD: house-service
-
   house-service:
     build: ./house-service
     container_name: house-service
@@ -42,16 +22,6 @@ services:
       - frontend-services
 
 # USER SERVICE
-  user-service-db:
-    build: ./user-service/db
-    container_name: user-service-db
-    ports: 
-      - 7003:3306
-    networks:
-      - backend
-    environment:
-      MYSQL_ROOT_PASSWORD: user-service
-
   user-service:
     build: ./user-service
     container_name: user-service
@@ -60,6 +30,17 @@ services:
     networks:
       - backend
       - frontend-services
+
+# DATABASE SERVICE
+  db-service:
+    build: ./database-service
+    container_name: database-service
+    ports: 
+      - 7000:3306
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: database-service
 
 # SERVICES FRONTEND
   services-frontend:
