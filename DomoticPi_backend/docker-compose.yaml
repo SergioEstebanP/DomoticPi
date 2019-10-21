@@ -32,7 +32,7 @@ services:
       - frontend-services
 
 # DATABASE SERVICE
-db-service:
+  db-service:
     build: ./database-service
     container_name: database-service
     ports: 
