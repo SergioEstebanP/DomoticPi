@@ -7,10 +7,10 @@ app = Flask(__name__)
 def get_users():
     try:
         connection = mysql.connector.connect(
-            host='user-service-db', 
-            database='usersDB', 
-            user='user-service', 
-            password='user-service'
+            host='database-service', 
+            database='DatabaseService', 
+            user='database-service', 
+            password='database-service'
         )
         print("connected to DB")
         if connection.is_connected():

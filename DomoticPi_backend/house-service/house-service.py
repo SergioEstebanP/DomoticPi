@@ -7,10 +7,10 @@ app = Flask(__name__)
 def get_houses():
     try:
         connection = mysql.connector.connect(
-            host='house-service-db', 
-            database='housesDB', 
-            user='house-service', 
-            password='house-service'
+            host='database-service', 
+            database='DatabaseService', 
+            user='database-service', 
+            password='database-service'
         )
         if connection.is_connected():
             sql_query = "select * from house"
