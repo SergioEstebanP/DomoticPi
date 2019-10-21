@@ -12,27 +12,27 @@ services:
       - frontend-services
 
 # HOUSE SERVICE
-  house-service:
-    build: ./house-service
-    container_name: house-service
-    ports: 
-      - 6002:5000
-    networks:
-      - backend
-      - frontend-services
+  # house-service:
+  #   build: ./house-service
+  #   container_name: house-service
+  #   ports: 
+  #     - 6002:5000
+  #   networks:
+  #     - backend
+  #     - frontend-services
 
 # USER SERVICE
-  user-service:
-    build: ./user-service
-    container_name: user-service
-    ports: 
-      - 6003:5000
-    networks:
-      - backend
-      - frontend-services
+  # user-service:
+  #   build: ./user-service
+  #   container_name: user-service
+  #   ports: 
+  #     - 6003:5000
+  #   networks:
+  #     - backend
+  #     - frontend-services
 
 # DATABASE SERVICE
-  db-service:
+  database-service:
     build: ./database-service
     container_name: database-service
     ports: 
@@ -43,13 +43,13 @@ services:
       MYSQL_ROOT_PASSWORD: database-service
 
 # SERVICES FRONTEND
-  services-frontend:
-    build: ../DomoticPi_frontend
-    container_name: services-frontend
-    ports: 
-      - 3001:3001
-    networks:
-      - frontend-services
+  # services-frontend:
+  #   build: ../DomoticPi_frontend
+  #   container_name: services-frontend
+  #   ports: 
+  #     - 3001:3001
+  #   networks:
+  #     - frontend-services
 
 networks:
   backend:

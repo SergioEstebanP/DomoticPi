@@ -8,7 +8,7 @@ def get_devices():
     try:
         connection = mysql.connector.connect(
             host='database-service', 
-            database='DatabaseService', 
+            database='dataService', 
             user='database-service', 
             password='database-service'
         )

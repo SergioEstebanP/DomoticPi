@@ -65,18 +65,26 @@ Some useful commands to deploy the services:
 
 | Service            | Port outside container  |  Port Forwarded |
 | ------------------ |:-----------------------:|:---------------:|
-| device-service-db  | 7001                    | 3306            |
-| house-service-db   | 7002                    | 3306            |
-| user-service-db    | 7003                    | 3306            |
+| database-service   | 7000                    | 3306            |
 
 #### Services Architecture
-![alt Services_architecture](documentation/services_components.png)
+There are two approaches to achieve the infrastructure we want here:
+1. Using a pure microservices architecture. With one services accesing its own db. And communicating them with an event handler and with an intermediate layer to have the proper consistency in the database. Using this architecture we avoid the issue with lots of hits using the databse and keeping consistency depends on external middleware. We can see this architecture and solution in the following image: 
+![alt Services_architecture_middleware](documentation/components_diagra_services_consistency_layer.png)
+
+2. Other solution, more classic: use only one database for all services and all the services accessing to it. We decide to use this architecture due to the lack of high hits to the API and also to the Database. This database is supossed to be designed only once and modifications are rare. only if customer wants to add new devices. We can see the architecture mentioned abode in the following picture:
+![alt Services_architecture_classical](documentation/components_diagra_services_one_db.png)
 
 #### Infrastructure Architecture
 ![alt Infrastructure_diagram](documentation/components_diagram.png)
 
 #### Entity Relation Diagram
+Depending on the solution we choose as main infrasctructure, we are going to have a different set up for the databases. The models are the following:
+1. Solution with middleware: 
 ![alt er_diagram](documentation/er_diagram.png)
+
+2. Solution without:
+![alt er_diagram](documentation/er_diagram_modified.png)
 
 ### To do list: 
 ---
