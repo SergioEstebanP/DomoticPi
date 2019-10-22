@@ -1,26 +1,12 @@
 import mysql.connector
 from flask import Flask, jsonify, abort, request
 from mysql.connector import Error
+from peewee import *
 
 app = Flask(__name__)
+db = MySQLDatabase('dataService', user='database-service', password='database-service', host='database-service')
 
 def get_devices():
-    try:
-        connection = mysql.connector.connect(
-            host='database-service', 
-            database='dataService', 
-            user='database-service', 
-            password='database-service'
-        )
-        if connection.is_connected():
-            sql_query = "select * from device"
-            cursor = connection.cursor()
-            cursor.execute(sql_query)
-            result = cursor.fetchall()
-            connection.close()
-            return result
-    except Error as error:
-        print(error)
 
 @app.route('/devices', methods=['GET', 'POST'])
 def index():
@@ -34,3 +20,21 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
+
+class DevicesDatabase(Model): 
+    class Meta: 
+        database = db
+
+class Device (DevicesDatabase):
+    id = AutoField(unique = True)
+    name = TextField()
+    model = TextField()
+    house = AutoField()
+
+class DeviceType (DevicesDatabase):
+    id = AutoField(unique = True)
+    name = TextField()
+    model = TextField()
+    house = AutoField()
+
+class 

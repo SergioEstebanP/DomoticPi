@@ -1,3 +1,5 @@
-FROM sergioestebanp/domoticpi:services-1.0
+FROM sergioestebanp/domoticpi:services-1.1
 WORKDIR ./DomoticPi/DomoticPi_backend/user-service
-ENTRYPOINT git -C /DomoticPi pull > aux && python3 user-service.py
+ENTRYPOINT git -C /DomoticPi fetch && \
+    git reset --hard origin/master && \
+    python3 user-service.py

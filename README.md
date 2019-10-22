@@ -48,7 +48,7 @@ Some useful commands to deploy the services:
 - **Enter in running container**: `docker exec -it container_name bash`
 - **Install python packages in containers**: `pip3 install packageName`
 - **Create container image from existing**: `docker commit sha256 sergioestebanp/domoticpi:tagName`
-- **Upload image container to docker-hub**: `docker push sha256 sergioestebanp/domoticpi:tagNameContainer`
+- **Upload image container to docker-hub**: `docker push sergioestebanp/domoticpi:tagNameContainer`
 
 ### Useful information
 ---
