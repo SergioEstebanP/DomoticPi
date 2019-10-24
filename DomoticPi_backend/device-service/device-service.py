@@ -21,20 +21,41 @@ def index():
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
 
-class DevicesDatabase(Model): 
+class Data_Service(Model): 
     class Meta: 
         database = db
+        devices = 'device'
+        devices_type = 'device_type'
+        user = 'user'
+        user_type = 'user_type'
+        house = 'house'
 
-class Device (DevicesDatabase):
+class Device_Type (Data_Service):
     id = AutoField(unique = True)
     name = TextField()
     model = TextField()
     house = AutoField()
 
-class DeviceType (DevicesDatabase):
+class Device (Data_Service):
     id = AutoField(unique = True)
     name = TextField()
     model = TextField()
     house = AutoField()
 
-class 
+class User_Type (Data_Service):
+    id = AutoField(unique = True)
+    user_value = TextField()
+
+class User (Data_Service):
+    id = AutoField(unique = True)
+    name = TextField()
+    last_name_1 = TextField()
+    last_name_2 = TextField()
+    nick_name = TextField()
+
+class House (Data_Service):
+    id = AutoField(unique = True)
+    city = TextField()
+    address = TextField()
+    owner = TextField()
+
