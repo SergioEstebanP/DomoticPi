@@ -1,12 +1,28 @@
 import mysql.connector
 from flask import Flask, jsonify, abort, request
 from mysql.connector import Error
-from peewee import *
+# from peewee import *
 
 app = Flask(__name__)
-db = MySQLDatabase('dataService', user='database-service', password='database-service', host='database-service')
+# db = MySQLDatabase('dataService', user='database-service', password='database-service', host='database-service')
 
 def get_devices():
+    try:
+        connection = mysql.connector.connect(
+            host='database-service', 
+            database='dataService', 
+            user='database-service', 
+            password='database-service'
+        )
+        if connection.is_connected():
+            sql_query = "select * from device"
+            cursor = connection.cursor()
+            cursor.execute(sql_query)
+            result = cursor.fetchall()
+            connection.close()
+            return result
+    except Error as error:
+        print(error)
 
 @app.route('/devices', methods=['GET', 'POST'])
 def index():
@@ -21,41 +37,41 @@ def index():
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
 
-class Data_Service(Model): 
-    class Meta: 
-        database = db
-        devices = 'device'
-        devices_type = 'device_type'
-        user = 'user'
-        user_type = 'user_type'
-        house = 'house'
+# class Data_Service(Model): 
+#     class Meta: 
+#         database = db
+#         devices = 'device'
+#         devices_type = 'device_type'
+#         user = 'user'
+#         user_type = 'user_type'
+#         house = 'house'
 
-class Device_Type (Data_Service):
-    id = AutoField(unique = True)
-    name = TextField()
-    model = TextField()
-    house = AutoField()
+# class Device_Type (Data_Service):
+#     id = AutoField(unique = True)
+#     name = TextField()
+#     model = TextField()
+#     house = AutoField()
 
-class Device (Data_Service):
-    id = AutoField(unique = True)
-    name = TextField()
-    model = TextField()
-    house = AutoField()
+# class Device (Data_Service):
+#     id = AutoField(unique = True)
+#     name = TextField()
+#     model = TextField()
+#     house = AutoField()
 
-class User_Type (Data_Service):
-    id = AutoField(unique = True)
-    user_value = TextField()
+# class User_Type (Data_Service):
+#     id = AutoField(unique = True)
+#     user_value = TextField()
 
-class User (Data_Service):
-    id = AutoField(unique = True)
-    name = TextField()
-    last_name_1 = TextField()
-    last_name_2 = TextField()
-    nick_name = TextField()
+# class User (Data_Service):
+#     id = AutoField(unique = True)
+#     name = TextField()
+#     last_name_1 = TextField()
+#     last_name_2 = TextField()
+#     nick_name = TextField()
 
-class House (Data_Service):
-    id = AutoField(unique = True)
-    city = TextField()
-    address = TextField()
-    owner = TextField()
+# class House (Data_Service):
+#     id = AutoField(unique = True)
+#     city = TextField()
+#     address = TextField()
+#     owner = TextField()
 
