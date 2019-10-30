@@ -3,7 +3,7 @@ version: '2'
 services:
 # DEVICE SERVICE
   device-service:
-    build: ./device-service
+    build: ../../DomoticPi_backend/device-service
     container_name: device-service
     ports: 
       - 6001:5000
@@ -13,7 +13,7 @@ services:
 
 # HOUSE SERVICE
   house-service:
-    build: ./house-service
+    build: ../../DomoticPi_backend/house-service
     container_name: house-service
     ports: 
       - 6002:5000
@@ -23,7 +23,7 @@ services:
 
 # USER SERVICE
   user-service:
-    build: ./user-service
+    build: ../../DomoticPi_backend/user-service
     container_name: user-service
     ports: 
       - 6003:5000
@@ -33,7 +33,7 @@ services:
 
 # DATABASE SERVICE
   database-service:
-    build: ./database-service
+    build: ../../DomoticPi_backend/database-service
     container_name: database-service
     ports: 
       - 7000:3306
@@ -44,7 +44,7 @@ services:
 
 # SERVICES FRONTEND
   services-frontend:
-    build: ../DomoticPi_frontend
+    build: ../../DomoticPi_frontend
     container_name: services-frontend
     ports: 
       - 3001:3001

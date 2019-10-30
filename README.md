@@ -84,7 +84,8 @@ Depending on the solution we choose as main infrasctructure, we are going to hav
 ![alt er_diagram](documentation/er_diagram.png)
 
 2. Solution without:
-IN PROGRESS
+![alt er_diagram](documentation/er_diagram_multi_db.png)
+
 
 #### CI/CD Flow and Charts
 This project supose to be fully automated. The deplyment is completely automated. The principal flow is as following: 
@@ -93,13 +94,9 @@ This project supose to be fully automated. The deplyment is completely automated
 3. Jenkins server running in a different machine detects the change in the repository and triggers the build for CI and CD. In this initial pipeline the new code pass the unit testing and then the smoke tests against backend and frontend services. 
 4. One the unit and smoke tests passed successfully and only the status is successful, then the deploy is done in the proper environment. The pipeline sends a command to the CD server, where a simple Java server listen the requests. Then the server executes the proper commands tu run the services and deploy applications in the environment. 
 You can see the flow in the following chart: 
+
 ![alt cicd_flow](documentation/cicd_flow.png)
 
-### To do list: 
----
-- Doc all the services
-- Move db credentials to private file and add it to .gitignore
-- Move credentials, directions and ip to external file
-- Add requirement file for pip 
-- Select a better frontend framework
-- See if MySQL connector for node is updated and support MySQL 8.0 version
+Above process is perfect for test local changes, but not suitable to delivery new updates into productino environment. The following process is better in order to deploy new services in productino or selected environment: 
+
+![alt production_cicd_flow](documentation/infraAutomatedCd.png)

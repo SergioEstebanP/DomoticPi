@@ -19,14 +19,14 @@ public class ServerThread implements Runnable {
                     // comandos de powershell para gestion de docker 
                     StringBuffer sb = new StringBuffer();
                     try {
-                        Process command = Runtime.getRuntime().exec("docker-compose up");
+                        Process command = Runtime.getRuntime().exec(new String[]{"powershell.exe", "/c", "docker ps -a"});
                         command.waitFor();
                         BufferedReader reader = new BufferedReader(new InputStreamReader(command.getInputStream()));
                         String commandOutput = "";			
                         while ((commandOutput = reader.readLine())!= null) {
+                            System.out.println(commandOutput);
                             sb.append(commandOutput + "\n");
                         }
-                        System.out.println(sb.toString());
                         System.out.println("Command executed Successfully");
                     } catch (Exception e) {
                         System.out.println("Error executing docker commands");
