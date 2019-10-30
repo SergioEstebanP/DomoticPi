@@ -80,12 +80,11 @@ There are two approaches to achieve the infrastructure we want here:
 
 #### Entity Relation Diagram
 Depending on the solution we choose as main infrasctructure, we are going to have a different set up for the databases. The models are the following:
-1. Solution with middleware: 
-![alt er_diagram](documentation/er_diagram.png)
-
-2. Solution without:
+1. Solution with middleware: this solution is the most suitable in order to follow a pure microservices architecture becase each microservice access to its database. But here we need an extra layer which means a little more complexity for the system. 
 ![alt er_diagram](documentation/er_diagram_multi_db.png)
 
+2. Solution without: by this way we just have the typical entity relation diagram in one unique database. We have 5 tables wit the relations described in the below diagram. By this way we avoid to implement an extra layer to mantain the data consistency, because all the operations performed in a table trigger needed changes in the other tables if needed. This way has a more coupled and tight architecture becasue all data is sotrage in one unique database. It's a single point of failure and any service should be able to work if database is down. For the future we consider change this relational approach for a non relation with ditributed database and node replication in case of failure, like MongoDB.
+![alt er_diagram](documentation/er_diagram.png)
 
 #### CI/CD Flow and Charts
 This project supose to be fully automated. The deplyment is completely automated. The principal flow is as following: 
@@ -100,3 +99,14 @@ You can see the flow in the following chart:
 Above process is perfect for test local changes, but not suitable to delivery new updates into productino environment. The following process is better in order to deploy new services in productino or selected environment: 
 
 ![alt production_cicd_flow](documentation/infraAutomatedCd.png)
+
+#### Git flow
+
+This project follows a simple branch strategy based on git workflow. We have the following branches: 
+- **master**: only has stable versions of the final product. Each new version deploy in master shoul be tagged properly. 
+- **develop**: storages a bunch of new functinoalites. When there are enough new functions then a new release and PR against master is done to create a new version of the product. 
+- **feature/ID-feature-name**: this branches comes from master directly, with the new features to implement. This branches could be merged only against develop. Never against master.
+- **hotfix**: this branches comes always from master and could be only merge with master. They introduce bugfixes for issues in production with high risk for the product. 
+You can find a detailed model in the following picture: 
+
+![alt production_cicd_flow](documentation/gitflow.png)
