@@ -23,6 +23,26 @@ def sql_query(query):
     except Error as error:
         print(error)
 
+def from_type_to_number(type):
+    if (type == "LIGHTS_CONTROL"):
+        return 0
+    elif (type == "MOTION"):
+        return 1
+    elif (type == "TEMPERATURE"):
+        return 2
+    elif (type == "HUMIDITY"):
+        return 3
+    elif (type == "WIFI"):
+        return 4
+    elif (type == "RELAY"):
+        return 5
+    else:
+        return 6
+
+def create_new_device (name, type, city, model):
+    type = from_type_to_number(type)
+    return sql_query("insert into device (name, type, model, house) values({}, {}, {}, {})".format(name, type, model, city))
+
 def get_devices():
     return sql_query("select * from device")
         
@@ -35,7 +55,13 @@ def devices():
         query_result = get_devices()
         return jsonify(query_result)
     elif (request.method == 'POST'):
-        return redirect(url_for("devices"))
+        name = request.args['device_name']
+        type = request.args['device_type']
+        city = request.args['device_city']
+        model = request.args['device_model']
+        create_new_device(name, type, city, model)
+        print("{} {} {} {}".format(name, model, city, type), flush=True)
+        return jsonify(name, type, city, model)
     else:
         abort(405, "Method not allowed not allowed")
 
@@ -49,42 +75,3 @@ def devices_types():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
-
-# class Data_Service(Model): 
-#     class Meta: 
-#         database = db
-#         devices = 'device'
-#         devices_type = 'device_type'
-#         user = 'user'
-#         user_type = 'user_type'
-#         house = 'house'
-
-# class Device_Type (Data_Service):
-#     id = AutoField(unique = True)
-#     name = TextField()
-#     model = TextField()
-#     house = AutoField()
-
-# class Device (Data_Service):
-#     id = AutoField(unique = True)
-#     name = TextField()
-#     model = TextField()
-#     house = AutoField()
-
-# class User_Type (Data_Service):
-#     id = AutoField(unique = True)
-#     user_value = TextField()
-
-# class User (Data_Service):
-#     id = AutoField(unique = True)
-#     name = TextField()
-#     last_name_1 = TextField()
-#     last_name_2 = TextField()
-#     nick_name = TextField()
-
-# class House (Data_Service):
-#     id = AutoField(unique = True)
-#     city = TextField()
-#     address = TextField()
-#     owner = TextField()
-

@@ -103,26 +103,26 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
-                                    <form class="px-4 py-3">
+                                <form class="px-4 py-3" method="POST" action="/devices">
+                                    <div class="modal-body">
                                         <div class="form-group">
                                             <label for="forName">Name</label>
                                             <input type="text" class="form-control" id="name_form" placeholder="sensor lights 1" name="device_name">
                                         </div>
                                         <div class="form-group">
                                             <label for="forType">Type</label>
-                                            <select name="type-selector">
+                                            <select name="device_type">
                                                 {% for i in range((data_devices_type|length)|int) %}
-                                                <option value="{{ data_devices_type[i][1] }}" name="device_type">{{ data_devices_type[i][1] }}</option>
+                                                <option value="{{ data_devices_type[i][1] }}">{{ data_devices_type[i][1] }}</option>
                                                 {% endfor %}
                                             </select>
 
                                         </div>
                                         <div class="form-group">
                                             <label for="forLocation">Location</label>
-                                            <select name="city-selector">
+                                            <select name="device_city">
                                                 {% for i in range((data_houses|length)|int) %}
-                                                <option value="{{ data_houses[i][0] }}" name="device_city">{{ data_houses[i][1] }}</option>
+                                                <option value="{{ data_houses[i][0] }}">{{ data_houses[i][1] }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
@@ -130,14 +130,12 @@
                                             <label for="forModel">Model</label>
                                             <input type="text" class="form-control" id="model_form" placeholder="RFC-4234" name="device_model">
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
                                 <div class="modal-footer">
-                                    <form  method="POST" action="/devices">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                    </form>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>
