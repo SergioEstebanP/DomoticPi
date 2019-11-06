@@ -41,7 +41,8 @@ def from_type_to_number(type):
 
 def create_new_device (name, type, city, model):
     type = from_type_to_number(type)
-    return sql_query("insert into device (name, type, model, house) values({}, {}, {}, {})".format(name, type, model, city))
+    print("{} {} {} {}".format(name, model, city, type), flush=True)
+    return sql_query("insert into device (name, type, model, house) values(" + name + ", " + type + ", " + model + ", " + city + ")")
 
 def get_devices():
     return sql_query("select * from device")
@@ -60,7 +61,6 @@ def devices():
         city = request.args['device_city']
         model = request.args['device_model']
         create_new_device(name, type, city, model)
-        print("{} {} {} {}".format(name, model, city, type), flush=True)
         return jsonify(name, type, city, model)
     else:
         abort(405, "Method not allowed not allowed")
