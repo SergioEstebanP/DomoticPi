@@ -15,6 +15,7 @@ jobs:
       - checkout
       - run:
           name: Get testing code
+          command: 'apt install -Y git'
           command: 'git clone https://github.com/SergioEstebanP/QA-Testing-Microservicios-Web.git'
       - run:
           name: Executing tests
