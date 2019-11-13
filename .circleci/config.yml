@@ -1,16 +1,21 @@
 version: 2
+
+executors:
+  base-node:
+    docker:
+      - image: sergioestebanp/basecontainer:1.0
+
 jobs:
   build:
-    docker:
-      - image: sergioestebanp/domoticpi:testingThings-1.2
+    executor: base-node
     steps:
       - checkout
       - run:
           name: Run and Deploy the services
-          command: 'echo Hello-World'
+          working_directory: './DomoticPi_tools/cicd_server/docker-compose.yaml'
+          command: 'docker-compose up'
   test:
-    docker:
-      - image: sergioestebanp/domoticpi:testingThings-1.2
+    executor: base-node
     steps:
       - checkout
       - run:
@@ -20,7 +25,7 @@ jobs:
           name: Executing tests
           working_directory: './QA-Testing-Microservicios-Web'
           command: |
-            ./gradlew test 
+            ./gradlew clean test aggregate
 
 workflows:
   version: 2
