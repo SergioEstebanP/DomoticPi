@@ -24,7 +24,9 @@ jobs:
           command: 'git clone https://github.com/SergioEstebanP/QA-Testing-Microservicios-Web.git'
       - run:
           name: Executing tests
-          working_directory: 'QA-Testing-Microservicios-Web'
+          command: 'pwd'
+          working_directory: './QA-Testing-Microservicios-Web'
+          command: 'ls -l'
           command: './gradlew.sh clean test aggregate'
 
 workflows:
