@@ -5,13 +5,30 @@ jobs:
       - image: ubuntu:latest
     steps:
       - checkout
-      - run: echo "Hello world"
+      - run:
+          name: Run and Deploy the services
+          command: 'echo Hello-World'
   test:
     docker:
       - image: ubuntu:latest
     steps:
-      - run: 
-        name: Testing
-        command: 'git clone https://github.com/SergioEstebanP/QA-Testing-Microservicios-Web.git'
-        work_dir: QA-Testing-Microservicios-Web
-        command: './gradlew.sh clean test aggregateA'
+      - checkout
+      - run:
+          name: Get testing code
+          command: 'git clone https://github.com/SergioEstebanP/QA-Testing-Microservicios-Web.git'
+      - run:
+          name: Executing tests
+          working_directory: 'QA-Testing-Microservicios-Web'
+          command: './gradlew.sh clean test aggregate'
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
