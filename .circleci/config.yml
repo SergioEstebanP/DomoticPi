@@ -1,14 +1,17 @@
- version: 2
- jobs:
-   build:
-     docker:
-       - image: ubuntu:latest
-     steps:
-       - run:
-        name: Running tests
-        command: git clone https://github.com/SergioEstebanP/QA-Testing-Microservicios-Web.git
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ubuntu:latest
+    steps:
+      - checkout
+      - run: echo "Hello world"
+  test:
+    docker:
+      - image: ubuntu:latest
+    steps:
+      - run: 
+        name: Testing
+        command: 'git clone https://github.com/SergioEstebanP/QA-Testing-Microservicios-Web.git'
         work_dir: QA-Testing-Microservicios-Web
-        command: ./gradlew.sh clean test aggregate
-
-
-
+        command: './gradlew.sh clean test aggregateA'
