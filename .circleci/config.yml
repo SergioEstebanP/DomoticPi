@@ -2,7 +2,13 @@
  jobs:
    build:
      docker:
-       - image: circleci/ruby:2.4.1
+       - image: ubuntu:latest
      steps:
-       - checkout
-       - run: echo "A first hello"
+       - run:
+        name: Running tests
+        command: git clone https://github.com/SergioEstebanP/QA-Testing-Microservicios-Web.git
+        work_dir: QA-Testing-Microservicios-Web
+        command: ./gradlew.sh clean test aggregate
+
+
+
