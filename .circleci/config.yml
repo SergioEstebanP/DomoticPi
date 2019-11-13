@@ -16,8 +16,8 @@ jobs:
       - run:
           name: Adding tools to the container
           command: 
-            apt update
-            apt upgrade
+            apt update \
+            apt upgrade \
             apt install -y git
       - run:
           name: Get testing code
