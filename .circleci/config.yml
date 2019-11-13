@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           name: Run and Deploy the services
-          working_directory: './DomoticPi_tools/cicd_server/docker-compose.yaml'
+          working_directory: './DomoticPi_tools/cicd_server/'
           command: 'docker-compose up'
   test:
     executor: my-executor
