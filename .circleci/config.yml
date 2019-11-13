@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: sergioestebanp/domoticpi:testingThings-1.1
+      - image: sergioestebanp/domoticpi:testingThings-1.2
     steps:
       - checkout
       - run:
@@ -10,7 +10,7 @@ jobs:
           command: 'echo Hello-World'
   test:
     docker:
-      - image: sergioestebanp/domoticpi:testingThings-1.1
+      - image: sergioestebanp/domoticpi:testingThings-1.2
     steps:
       - checkout
       - run:
