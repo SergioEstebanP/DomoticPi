@@ -14,8 +14,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Adding tools to the container
+          command: 'apt install -y git'
+      - run:
           name: Get testing code
-          command: 'apt install -Y git'
           command: 'git clone https://github.com/SergioEstebanP/QA-Testing-Microservicios-Web.git'
       - run:
           name: Executing tests
