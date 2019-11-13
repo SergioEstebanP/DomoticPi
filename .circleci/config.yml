@@ -1,13 +1,9 @@
 version: 2
 
-executors:
-  base-node:
-    docker:
-      - image: sergioestebanp/basecontainer:1.0
-
 jobs:
   build:
-    executor: base-node
+    docker:
+      - image: sergioestebanp/basecontainer:1.0
     steps:
       - checkout
       - run:
@@ -15,7 +11,8 @@ jobs:
           working_directory: './DomoticPi_tools/cicd_server/docker-compose.yaml'
           command: 'docker-compose up'
   test:
-    executor: base-node
+    docker:
+      - image: sergioestebanp/basecontainer:1.0
     steps:
       - checkout
       - run:
