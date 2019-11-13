@@ -16,10 +16,9 @@ jobs:
       - run:
           name: Adding tools to the container
           command: 
-            -> 
-              apt -y update
-              apt -y upgrade
-              apt -y install git
+            apt -y update
+            apt -y upgrade
+            apt -y install git
       - run:
           name: Get testing code
           command: 'git clone https://github.com/SergioEstebanP/QA-Testing-Microservicios-Web.git'
