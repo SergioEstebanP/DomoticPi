@@ -15,9 +15,9 @@ jobs:
       - checkout
       - run:
           name: Adding tools to the container
-          command: 
-            apt update \
-            apt upgrade \
+          command: |
+            apt -y update 
+            apt -y upgrade 
             apt install -y git
       - run:
           name: Get testing code
