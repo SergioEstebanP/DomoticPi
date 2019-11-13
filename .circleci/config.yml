@@ -19,6 +19,7 @@ jobs:
             apt -y update 
             apt -y upgrade 
             apt install -y git
+            apt install -y default-jdk
       - run:
           name: Get testing code
           command: 'git clone https://github.com/SergioEstebanP/QA-Testing-Microservicios-Web.git'
