@@ -27,7 +27,8 @@ jobs:
           name: Executing tests
           working_directory: './QA-Testing-Microservicios-Web'
           command: |
-            ./gradlew clean test aggregate
+            chmod u+x ./gradlew.sh
+            ./gradlew.sh clean test aggregate
 
 workflows:
   version: 2
