@@ -10,16 +10,9 @@ jobs:
           command: 'echo Hello-World'
   test:
     docker:
-      - image: ubuntu:latest
+      - image: sergioestebanp/domoticpi:testingThings
     steps:
       - checkout
-      - run:
-          name: Adding tools to the container
-          command: |
-            apt -y update 
-            apt -y upgrade 
-            apt install -y git
-            apt install -y default-jdk
       - run:
           name: Get testing code
           command: 'git clone https://github.com/SergioEstebanP/QA-Testing-Microservicios-Web.git'
