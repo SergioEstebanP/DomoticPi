@@ -70,21 +70,21 @@ Some useful commands to deploy the services:
 #### Services Architecture
 There are two approaches to achieve the infrastructure we want here:
 1. Using a pure microservices architecture. With one services accesing its own db. And communicating them with an event handler and with an intermediate layer to have the proper consistency in the database. Using this architecture we avoid the issue with lots of hits using the databse and keeping consistency depends on external middleware. We can see this architecture and solution in the following image: 
-![alt Services_architecture_middleware](documentation/components_diagra_services_consistency_layer.png)
+![alt Services_architecture_middleware](documentation/images/components_diagra_services_consistency_layer.png)
 
 2. Other solution, more classic: use only one database for all services and all the services accessing to it. We decide to use this architecture due to the lack of high hits to the API and also to the Database. This database is supossed to be designed only once and modifications are rare. only if customer wants to add new devices. We can see the architecture mentioned abode in the following picture:
-![alt Services_architecture_classical](documentation/components_diagra_services_one_db.png)
+![alt Services_architecture_classical](documentation/images/components_diagra_services_one_db.png)
 
 #### Infrastructure Architecture
-![alt Infrastructure_diagram](documentation/components_diagram.png)
+![alt Infrastructure_diagram](documentation/images/components_diagram.png)
 
 #### Entity Relation Diagram
 Depending on the solution we choose as main infrasctructure, we are going to have a different set up for the databases. The models are the following:
 1. Solution with middleware: this solution is the most suitable in order to follow a pure microservices architecture becase each microservice access to its database. But here we need an extra layer which means a little more complexity for the system. 
-![alt er_diagram](documentation/er_diagram_multi_db.png)
+![alt er_diagram](documentation/images/er_diagram_multi_db.png)
 
 2. Solution without: by this way we just have the typical entity relation diagram in one unique database. We have 5 tables wit the relations described in the below diagram. By this way we avoid to implement an extra layer to mantain the data consistency, because all the operations performed in a table trigger needed changes in the other tables if needed. This way has a more coupled and tight architecture becasue all data is sotrage in one unique database. It's a single point of failure and any service should be able to work if database is down. For the future we consider change this relational approach for a non relation with ditributed database and node replication in case of failure, like MongoDB.
-![alt er_diagram](documentation/er_diagram.png)
+![alt er_diagram](documentation/images/er_diagram.png)
 
 #### CI/CD Flow and Charts
 This project supose to be fully automated. The deplyment is completely automated. The principal flow is as following: 
@@ -94,11 +94,11 @@ This project supose to be fully automated. The deplyment is completely automated
 4. One the unit and smoke tests passed successfully and only the status is successful, then the deploy is done in the proper environment. The pipeline sends a command to the CD server, where a simple Java server listen the requests. Then the server executes the proper commands tu run the services and deploy applications in the environment. 
 You can see the flow in the following chart: 
 
-![alt cicd_flow](documentation/cicd_flow.png)
+![alt cicd_flow](documentation/images/cicd_flow.png)
 
 Above process is perfect for test local changes, but not suitable to delivery new updates into productino environment. The following process is better in order to deploy new services in productino or selected environment: 
 
-![alt production_cicd_flow](documentation/infraAutomatedCd.png)
+![alt production_cicd_flow](documentation/images/infraAutomatedCd.png)
 
 #### Git flow
 
@@ -109,4 +109,4 @@ This project follows a simple branch strategy based on git workflow. We have the
 - **hotfix**: this branches comes always from master and could be only merge with master. They introduce bugfixes for issues in production with high risk for the product. 
 You can find a detailed model in the following picture: 
 
-![alt production_cicd_flow](documentation/gitflow.png)
+![alt production_cicd_flow](documentation/images/gitflow.png)
