@@ -2,7 +2,13 @@ import mysql.connector
 from flask import Flask, jsonify, abort, request
 from mysql.connector import Error
 
+GET = 'GET'
+POST = 'POST'
+
+LOCALHOST = '0.0.0.0'
+
 app = Flask(__name__)
+app.config.from_object('config')
 
 def get_houses():
     try:
@@ -22,15 +28,15 @@ def get_houses():
     except Error as error:
         print(error)
 
-@app.route('/houses', methods=['GET', 'POST'])
+@app.route('/houses', methods=[GET, POST])
 def index():
-    if (request.method == 'GET'):
+    if (request.method == GET):
         query_result = get_houses()
         return jsonify(query_result)
-    elif (request.method == 'POST'):
+    elif (request.method == POST):
         return ("201 Created")
     else:
         abort(405, "Method not allowed not allowed")
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host=LOCALHOST, port=app.config["PORT"])

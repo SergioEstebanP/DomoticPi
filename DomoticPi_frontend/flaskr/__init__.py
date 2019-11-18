@@ -6,8 +6,17 @@ import os
 
 app = Flask(__name__)
 
-DEVICES_URL = 'http://device-service:5000/devices'
-DEVICES_TYPES_URL = 'http://device-service:5000/devices/types'
+DEVICES_PORT = 6001
+HOUSES_PORT = 6002
+USERS_PORT = 6003
+FRONT_PORT = 3001
+
+LOCALHOST = '0.0.0.0'
+
+DEVICES_URL = "http://device-service:{}/devices".format(DEVICES_PORT)
+DEVICES_TYPES_URL = "http://device-service:{}/devices/types".format(DEVICES_PORT)
+HOUSES_URL = "http://house-service:{}/houses".format(HOUSES_PORT)
+USERS_URL = "http://user-service:{}/users".format(USERS_PORT)
 
 GET = 'GET'
 POST = 'POST'
@@ -24,7 +33,6 @@ def get_devices_type():
 def create_new_device(device_name, device_type, device_city, device_model):
     query_parameters = {'device_name': device_name, 'device_type': device_type, 'device_city': device_city, 'device_model': device_model}
     response = requests.post(DEVICES_URL, params = query_parameters)
-    # print(response.json(), flush=True)
     return json.loads(response.content)
 
 @app.route('/devices', methods = [GET, POST])
@@ -47,7 +55,7 @@ def devices():
 
 # HOUSES 
 def get_houses():
-    response = requests.get('http://house-service:5000/houses')
+    response = requests.get(HOUSES_URL)
     return json.loads(response.content)
 
 @app.route('/houses')
@@ -57,7 +65,7 @@ def houses():
 
 # USERS 
 def get_users():
-    response = requests.get('http://user-service:5000/users')
+    response = requests.get(USERS_URL)
     return json.loads(response.content)
 
 @app.route('/users')
@@ -67,4 +75,4 @@ def users():
 
 # MAIN APPLICATION RUNNER
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port='3001')
+    app.run(debug=True, host=LOCALHOST, port=FRONT_PORT)

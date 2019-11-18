@@ -1,10 +1,14 @@
 import mysql.connector
 from flask import Flask, jsonify, abort, request, redirect, url_for
 from mysql.connector import Error
-# from peewee import *
+
+GET = "GET"
+POST = "POST"
+
+LOCALHOST = "0.0.0.0"
 
 app = Flask(__name__)
-# db = MySQLDatabase('dataService', user='database-service', password='database-service', host='database-service')
+app.config.from_object('config')
 
 def sql_query(query):
     try:
@@ -50,12 +54,12 @@ def get_devices():
 def get_devices_types():
     return sql_query("select * from device_type")
 
-@app.route('/devices', methods=['GET', 'POST'])
+@app.route('/devices', methods=[GET, POST])
 def devices():
-    if (request.method == 'GET'):
+    if (request.method == GET):
         query_result = get_devices()
         return jsonify(query_result)
-    elif (request.method == 'POST'):
+    elif (request.method == POST):
         name = request.args['device_name']
         type = request.args['device_type']
         city = request.args['device_city']
@@ -65,13 +69,13 @@ def devices():
     else:
         abort(405, "Method not allowed not allowed")
 
-@app.route('/devices/types', methods=['GET'])
+@app.route('/devices/types', methods=[GET])
 def devices_types():
-    if (request.method == 'GET'):
+    if (request.method == GET):
         query_result = get_devices_types()
         return jsonify(query_result)
     else:
         abort(405, "Method not allowed not allowed")
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host=LOCALHOST, port=app.config["PORT"])

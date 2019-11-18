@@ -23,3 +23,6 @@ In order to develop in local computer, and avoid costs of time uploading code an
  * Debugger PIN: 217-842-666
  * Running on http://0.0.0.0:3001/ (Press CTRL+C to quit)
 ```
+
+NOTES: the only container you must run under docker is database-service. This service uses a mysql already docker container in order to storage the data properly. To run this container just type the following command: 
+> `docker run -p 3306:3306 --name device-service-db -e MYSQL_ROOT_PASSWORD=device-service -d --net=services-nw device-service-db`

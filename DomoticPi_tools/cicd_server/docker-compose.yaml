@@ -6,7 +6,7 @@ services:
     build: ../../DomoticPi_backend/device-service
     container_name: device-service
     ports: 
-      - 6001:5000
+      - 6001:6001
     networks:
       - backend
       - frontend-services
@@ -16,7 +16,7 @@ services:
     build: ../../DomoticPi_backend/house-service
     container_name: house-service
     ports: 
-      - 6002:5000
+      - 6002:6002
     networks:
       - backend
       - frontend-services
@@ -26,7 +26,7 @@ services:
     build: ../../DomoticPi_backend/user-service
     container_name: user-service
     ports: 
-      - 6003:5000
+      - 6003:6003
     networks:
       - backend
       - frontend-services
@@ -36,7 +36,7 @@ services:
     build: ../../DomoticPi_backend/database-service
     container_name: database-service
     ports: 
-      - 7000:3306
+      - 3306:3306
     networks:
       - backend
     environment:
