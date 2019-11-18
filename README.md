@@ -57,15 +57,15 @@ Some useful commands to deploy the services:
 
 | Service          | Port outside container  |  Port Forwarded |
 | ---------------- |:-----------------------:|:---------------:|
-| device-service   | 6001                    | 5000            |
-| house-service    | 6002                    | 5000            |
-| user-service     | 6003                    | 5000            |
+| device-service   | 6001                    | 6001            |
+| house-service    | 6002                    | 6002            |
+| user-service     | 6003                    | 6003            |
 
 #### Databases Port forwarding
 
 | Service            | Port outside container  |  Port Forwarded |
 | ------------------ |:-----------------------:|:---------------:|
-| database-service   | 7000                    | 3306            |
+| database-service   | 3306                    | 3306            |
 
 #### Services Architecture
 There are two approaches to achieve the infrastructure we want here:

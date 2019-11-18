@@ -2,6 +2,8 @@ import mysql.connector
 from flask import Flask, jsonify, abort, request, redirect, url_for
 from mysql.connector import Error
 
+from utils.utils import sql_query
+
 GET = "GET"
 POST = "POST"
 
@@ -9,23 +11,6 @@ LOCALHOST = "0.0.0.0"
 
 app = Flask(__name__)
 app.config.from_object('config')
-
-def sql_query(query):
-    try:
-        connection  = mysql.connector.connect(
-            host='database-service', 
-            database='dataService', 
-            user='database-service', 
-            password='database-service'
-        )
-        if connection.is_connected():
-            cursor = connection.cursor()
-            cursor.execute(query)
-            result = cursor.fetchall()
-            connection.close()
-            return result
-    except Error as error:
-        print(error)
 
 def from_type_to_number(type):
     if (type == "LIGHTS_CONTROL"):
@@ -50,7 +35,7 @@ def create_new_device (name, type, city, model):
 
 def get_devices():
     return sql_query("select * from device")
-        
+
 def get_devices_types():
     return sql_query("select * from device_type")
 
