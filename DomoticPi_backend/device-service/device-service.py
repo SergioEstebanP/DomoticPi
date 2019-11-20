@@ -13,7 +13,8 @@ app.config.from_object('config')
 def sql_query(query):
     try:
         connection  = mysql.connector.connect(
-            host='database-service', 
+            # host='database-service'
+            host='127.0.0.1', 
             database='dataService', 
             user='database-service', 
             password='database-service'
@@ -50,7 +51,7 @@ def create_new_device (name, type, city, model):
 
 def get_devices():
     return sql_query("select * from device")
-        
+
 def get_devices_types():
     return sql_query("select * from device_type")
 
