@@ -13,7 +13,8 @@ app.config.from_object('config')
 def get_houses():
     try:
         connection = mysql.connector.connect(
-            host='database-service', 
+            # host='database-service'
+            host='127.0.0.1', 
             database='dataService', 
             user='database-service', 
             password='database-service'

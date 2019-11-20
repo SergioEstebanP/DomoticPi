@@ -13,7 +13,8 @@ LOCALHOST = '0.0.0.0'
 def get_users():
     try:
         connection = mysql.connector.connect(
-            host='database-service', 
+            # host='database-service', 
+            host='127.0.0.1', 
             database='dataService', 
             user='database-service', 
             password='database-service'

@@ -2,8 +2,6 @@ import mysql.connector
 from flask import Flask, jsonify, abort, request, redirect, url_for
 from mysql.connector import Error
 
-from utils.utils import sql_query
-
 GET = "GET"
 POST = "POST"
 
@@ -11,6 +9,24 @@ LOCALHOST = "0.0.0.0"
 
 app = Flask(__name__)
 app.config.from_object('config')
+
+def sql_query(query):
+    try:
+        connection  = mysql.connector.connect(
+            # host='database-service'
+            host='127.0.0.1', 
+            database='dataService', 
+            user='database-service', 
+            password='database-service'
+        )
+        if connection.is_connected():
+            cursor = connection.cursor()
+            cursor.execute(query)
+            result = cursor.fetchall()
+            connection.close()
+            return result
+    except Error as error:
+        print(error)
 
 def from_type_to_number(type):
     if (type == "LIGHTS_CONTROL"):
